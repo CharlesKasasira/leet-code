@@ -13,7 +13,11 @@ Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
+ * @description Aproach: ONE PASS HASH TABLE
  */
+
+
+// 1: Using a map as our hashtable
  const twoSum = function(nums, target) {
     const PREV_VALUES = new Map() // store previous values. you could as well use an object.
     const LEN = nums.length // define the length outside the loop
@@ -25,5 +29,17 @@ Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
             PREV_VALUES.set(nums[i], i)
         }
         
+    }
+};
+
+// 2: Using an object
+const twoSum2 = function(nums, target) {
+    const PREV_VALUES = {}; // using an object as our hash table
+    const LEN = nums.length;
+    for(let i=0; i<LEN; i++){
+        if(PREV_VALUES[nums[i]]>=0){
+            return [ PREV_VALUES[nums[i] ] , i]
+        }
+        PREV_VALUES[target-nums[i]] = i
     }
 };
